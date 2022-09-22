@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spiel Starten</title>
+</head>
+<body>
+  <h1>Black Jack</h1>
+<div>
+    <form th:object="${angaben}" th:action="@{angaben}">
+        <p>Anzahl Spieler</p>
+        <input type="number" th:field="*{spielerAnzahl}" min="1" value="1">
+        <p>Anzahl Decks</p>
+        <input type="number" th:field="*{decksAnzahl}" min="1" value="1">
+        <br>
+        <button type="submit">Starten</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Betting</title>
+</head>
+<body>
+<h1>Betting</h1>
+<div>
+  <form>
+      <span th:each="spielerName: ${spielerNamen}">
+          <table>
+                <tr><td th:text="${spielerName}"></td><td><label>Einsatz</label></td></tr>
+              <tr> <td></td><td><input type="number"></td></tr>
+          </table>
+      </span>
+      <button type="submit">Fertig</button>
+  </form>
+</div>
+</body>
+</html>
