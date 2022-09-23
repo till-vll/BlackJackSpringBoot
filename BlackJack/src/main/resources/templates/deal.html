@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deal</title>
+</head>
+<body>
+<div>
+    <h1>The Deal</h1>
+    <table>
+        <tr>
+            <th>Spieler</th>
+            <th>Farbe Karte 1</th>
+            <th>Wert Karte 2</th>
+            <th>Farbe Karte 2</th>
+            <th>Wert Karte 2</th>
+            <th>Handwert</th>
+            <th>Einsatz</th>
+        </tr>
+        <tr>
+            <td>Dealer</td>
+            <td th:text="${dealer.getHand().get(0).getFarbe()}"></td>
+            <td th:text="${dealer.getHand().get(0).getWert()}"></td>
+            <td>????</td>
+            <td>????</td>
+            <td th:text="${dealer.getHand().get(0).getKartenWert}"></td>
+            <td></td>
+        </tr>
+        <tr th:each="spieler: ${mitSpieler}">
+            <th th:text="${spieler.getSpielernummer()} + 1">Spieler</th>
+            <td th:text="${spieler.getHand().get(0).getFarbe()}"></td>
+            <td th:text="${spieler.getHand().get(0).getWert()}"></td>
+            <td th:text="${spieler.getHand().get(1).getFarbe()}"></td>
+            <td th:text="${spieler.getHand().get(1).getWert()}"></td>
+            <td th:text="${spieler.getHandWert()}"></td>
+            <td th:text="${spieler.getRundenEinsatz()}"></td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

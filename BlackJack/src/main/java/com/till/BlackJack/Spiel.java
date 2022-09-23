@@ -8,15 +8,22 @@ public class Spiel {
 
     //Spieler
     private ArrayList<Spieler> alleSpieler = new ArrayList<>();
+
+    private ArrayList<Spieler> mitSpieler = new ArrayList<>();
+
     private Deck deck;
 
     //Spieler & Deck hinzufügen
     public Spiel(int anzahlSpieler, int anzahlDecks) throws Exception {
         for (int i = 0; i < anzahlSpieler + 1; i++) {
             this.alleSpieler.add(new Spieler(i));
-            deck = new Deck(anzahlDecks);
         }
+        for (int i = 0; i < this.alleSpieler.size() -1; i++) {
+            this.mitSpieler.add(this.alleSpieler.get(i));
+        }
+        deck = new Deck(anzahlDecks);
     }
+
 
     //Betting
     public void betting(ArrayList<Integer> einsaetze) {
@@ -25,6 +32,7 @@ public class Spiel {
             spieler.setRundenEinsatz(einsaetze.get(i));
             spieler.setKontostand(spieler.getKontostand() - einsaetze.get(i));
         }
+        this.deck.spielbareKartenMischen();
     }
 
     public ArrayList<Spieler> getAlleSpieler() {
@@ -154,4 +162,7 @@ public class Spiel {
         return deck;
     }
 
+    public ArrayList<Spieler> getMitSpieler() {
+        return mitSpieler;
+    }
 }

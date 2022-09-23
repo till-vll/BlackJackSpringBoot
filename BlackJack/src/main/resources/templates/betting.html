@@ -7,13 +7,13 @@
 <body>
 <h1>Betting</h1>
 <div>
-  <form>
-      <span th:each="spielerName: ${spielerNamen}">
+  <form th:object="${einsatz}" th:action="@{einsaetze}" >
+      <div th:each="spieler: ${spieler}">
           <table>
-                <tr><td th:text="${spielerName}"></td><td><label>Einsatz</label></td></tr>
-              <tr> <td></td><td><input type="number"></td></tr>
+                <tr><td><label>Spieler: </label></td><td th:text="${spieler.getSpielernummer()}+1"></td></tr>
+              <tr> <td><label>Einsatz: </label></td><td><input type="number" th:field="*{einsaetze}" min="0" th:max="${spieler.getKontostand()}"></td></tr>
           </table>
-      </span>
+      </div>
       <button type="submit">Fertig</button>
   </form>
 </div>

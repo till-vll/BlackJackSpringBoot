@@ -17,9 +17,15 @@ public class SpielController {
     @Setter
     @Getter
     @NoArgsConstructor
-    class Angaben{
+    public class Angaben{
         private int spielerAnzahl;
         private int decksAnzahl;
+    }
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    public class Einsatz{
+        private ArrayList<Integer> einsaetze = new ArrayList<>();
     }
     Spiel spiel;
 
@@ -42,19 +48,30 @@ public class SpielController {
 
     @RequestMapping(value = "/betting")
     public String betting(Model model) throws Exception {
-        ArrayList<String> spielerNamen = new ArrayList<>();
-        for (int i = 0; i < spiel.getAlleSpieler().size() - 1; i++) {
-            String spielerName = String.format("Spieler %d",i + 1);
-            spielerNamen.add(spielerName);
-        }
-        model.addAttribute("spielerNamen",spielerNamen);
-        System.out.println(spielerNamen.size());
-        for (String spierler: spielerNamen
-             ) {
-        }
+        ArrayList<Spieler> spieler = spiel.getMitSpieler();
+        model.addAttribute("spieler",spieler);
+        Einsatz einsatz = new Einsatz();
+        model.addAttribute("einsatz",einsatz);
         return "betting.html";
     }
 
+    @GetMapping(value = "/einsaetze")
+    public String einsaetze(Model model, Einsatz einsatz) throws Exception{
+        model.addAttribute("einsaetze",einsatz);
+        spiel.betting(einsatz.einsaetze);
+        return "redirect:/deal";
+    }
+
+    @RequestMapping(value = "/deal")
+    public String deal(Model model){
+        spiel.deal();
+        ArrayList<Spieler> mitSpieler = spiel.getMitSpieler();
+        Spieler dealer = spiel.getAlleSpieler().get(spiel.getAlleSpieler().size()-1);
+        model.addAttribute("dealer",dealer);
+        model.addAttribute("mitSpieler",mitSpieler);
+        System.out.println(dealer.getHand().get(0).getKartenWert());
+        return "deal";
+    }
 
 
 
