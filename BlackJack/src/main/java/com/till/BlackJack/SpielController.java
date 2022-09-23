@@ -28,6 +28,7 @@ public class SpielController {
         private ArrayList<Integer> einsaetze = new ArrayList<>();
     }
     Spiel spiel;
+    int thePlaySpieler = 0;
 
     public SpielController() throws Exception {
     }
@@ -75,6 +76,19 @@ public class SpielController {
         System.out.println(dealer.getHand().get(0).getKartenWert());
         return "deal";
     }
+
+    @RequestMapping(value = "/thePlay")
+    public String thePlay(Model model){
+        Spieler spieler = spiel.getErstenMitspieler();
+        if(spieler.getSpielernummer() == spiel.getAlleSpieler().size() -1){
+            return "redirect:/dealersPlay";
+        }
+        model.addAttribute("spieler",spieler);
+        model.addAttribute("spiel",spiel);
+
+        return "thePLay";
+    }
+
 
 
 

@@ -24,6 +24,16 @@ public class Spiel {
         deck = new Deck(anzahlDecks);
     }
 
+    //Get ersten noch mitspielenden Spieler
+    public Spieler getErstenMitspieler(){
+        for (Spieler spieler:this.mitSpieler
+             ) {
+            if (spieler.isSpieltNoch()){
+                return spieler;
+            }
+        }
+        return this.alleSpieler.get(this.getAlleSpieler().size() -1);
+    }
 
     //Betting
     public void betting(ArrayList<Integer> einsaetze) {
@@ -91,7 +101,7 @@ public class Spiel {
 
     //ThePlay
     public boolean thePlay(boolean standOrHit, Spieler spieler) {
-        if (spieler.isSpieltNoch()) {
+        if (spieler.isSpieltNoch() && spieler.getHandWert() < 21) {
             if (standOrHit) {
                 return false;
             } else {

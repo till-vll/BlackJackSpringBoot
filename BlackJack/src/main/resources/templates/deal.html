@@ -22,9 +22,9 @@
             <td>Dealer</td>
             <td th:text="${dealer.getHand().get(0).getFarbe()}"></td>
             <td th:text="${dealer.getHand().get(0).getWert()}"></td>
-            <td th:text="${natural} ? '${dealer.getHand().get(1).getFarbe()}' : '????'"></td>
-            <td th:text="${natural} ? '${dealer.getHand().get(1).getWert()}' : '????'"></td>
-            <td th:text="${dealer.getHand().get(0).getKartenWert}"></td>
+            <td th:text="${natural} ? ${dealer.getHand().get(1).getFarbe()} : '????'"></td>
+            <td th:text="${natural} ? ${dealer.getHand().get(1).getWert()} : '????'"></td>
+            <td th:text="${natural} ? ${dealer.getHandWert} : ${dealer.getHand().get(0).getKartenWert}"></td>
             <td>----</td>
             <td th:text="${natural} ? 'Ja' : 'Nein'"></td>
         </tr>
@@ -36,7 +36,7 @@
             <td th:text="${spieler.getHand().get(1).getWert()}"></td>
             <td th:text="${spieler.getHandWert()}"></td>
             <td th:text="${spieler.getRundenEinsatz()}"></td>
-            <td th:text="${spieler.isSpieltNoch()} ? 'Nein' : 'Ja'"></td>
+            <td th:text="${spieler.getHandWert()} == 21 ? 'Ja' : 'Nein'"></td>
         </tr>
     </table>
     <a href="/betting" th:if="${natural}"><button type="button" >Neue Runde</button></a>

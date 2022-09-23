@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The Play</title>
+</head>
+<body>
+<div>
+  <h1 th:text="'Spieler ' + ${spieler.getSpielernummer() +1}"></h1>
+  <h4 th:text="'Einsatz: ' + ${spieler.getRundenEinsatz()}"></h4>
+  <h4 th:text="'Kontostand: ' + ${spieler.getKontostand()}"></h4>
+  <h2>Geben oder Passen?</h2>
+  <table>
+    <tr>
+      <th>Karte</th>
+      <th>Farbe</th>
+      <th>Wert</th>
+    </tr>
+    <tr th:each="karte, iter : ${spieler.getHand()}">
+      <td th:text="${iter.count}"></td>
+      <td th:text="${karte.getFarbe()}"></td>
+      <td th:text="${karte.getWert}"></td>
+    </tr>
+  </table>
+  <h3 th:text="'Handwert: ' + ${spieler.getHandWert}"></h3>
+  <p>
+    <a href="/thePlay"><button th:ondblclick="${spiel.thePlay(false,spieler)}">Geben</button></a>
+    <a href="/thePlay"><button th:ondblclick="${spiel.thePlay(true,spieler)}">Passen</button></a>
+  </p>
+</div>
+</body>
+</html>
