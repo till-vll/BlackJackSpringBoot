@@ -65,10 +65,13 @@ public class SpielController {
     @RequestMapping(value = "/deal")
     public String deal(Model model){
         spiel.deal();
+        boolean natural = spiel.natural();
         ArrayList<Spieler> mitSpieler = spiel.getMitSpieler();
         Spieler dealer = spiel.getAlleSpieler().get(spiel.getAlleSpieler().size()-1);
         model.addAttribute("dealer",dealer);
         model.addAttribute("mitSpieler",mitSpieler);
+        model.addAttribute("spiel",spiel);
+        model.addAttribute("natural",natural);
         System.out.println(dealer.getHand().get(0).getKartenWert());
         return "deal";
     }
