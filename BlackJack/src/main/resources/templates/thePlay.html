@@ -23,10 +23,8 @@
     </tr>
   </table>
   <h3 th:text="'Handwert: ' + ${spieler.getHandWert}"></h3>
-  <p>
-    <a href="/thePlay"><button th:ondblclick="${spiel.thePlay(false,spieler)}">Geben</button></a>
-    <a href="/thePlay"><button th:ondblclick="${spiel.thePlay(true,spieler)}">Passen</button></a>
-  </p>
+    <a href="/thePlay"><button type="button" th:ondblclick="${spiel.thePlay(false,spieler)}">Geben</button></a>
+    <a href="/thePlay"><button type="button" th:ondblclick="${spiel.thePlay(true,spieler)}">Passen</button></a>
 </div>
 </body>
 </html>

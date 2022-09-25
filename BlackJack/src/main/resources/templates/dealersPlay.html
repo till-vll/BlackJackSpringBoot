@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Dealers Play</title>
 </head>
 <body>
+<h1>Dealers Play</h1>
+<div>
+    <h2>Dealer</h2>
+    <table>
+        <tr>
+            <th>Karte</th>
+            <th>Farbe</th>
+            <th>Wert</th>
+        </tr>
+        <tr th:each="karte, iter : ${dealer.getHand()}">
+            <td th:text="${iter.count}"></td>
+            <td th:text="${karte.getFarbe()}"></td>
+            <td th:text="${karte.getWert}"></td>
+        </tr>
+    </table>
+    <h3 th:text="'Handwert: ' + ${dealer.getHandWert()}"></h3>
+</div>
 
+
+<div th:each="spieler : ${mitspieler}">
+    <h2 th:text="'Spieler ' + ${spieler.getSpielernummer() +1}"></h2>
+    <h3 th:text="'Kontostand: ' + ${spieler.getKontostand()}"></h3>
+
+    <table>
+        <tr>
+            <th>Karte</th>
+            <th>Farbe</th>
+            <th>Wert</th>
+        </tr>
+        <tr th:each="karte, iter : ${spieler.getHand()}">
+            <td th:text="${iter.count}"></td>
+            <td th:text="${karte.getFarbe()}"></td>
+            <td th:text="${karte.getWert}"></td>
+        </tr>
+    </table>
+    <h3 th:text="'Handwert: ' + ${spieler.getHandWert()}"></h3>
+</div>
+<div>
+    <a href="/betting"><button type="button">Neue Runde</button></a>
+</div>
 </body>
 </html>

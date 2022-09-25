@@ -112,6 +112,17 @@ public class SpielTest {
     }
 
     @Test
+    void checkThePlayPassen() throws Exception{
+        Spiel testspiel = new Spiel(1,4);
+        Spieler spieler = testspiel.getAlleSpieler().get(0);
+        testspiel.getDeck().spielbareKartenMischen();
+        testspiel.deal();
+        testspiel.thePlay(false,spieler);
+        testspiel.thePlay(true,spieler);
+        assertEquals(3,spieler.getHand().size());
+    }
+
+    @Test
     void checkDealersPlay() throws Exception {
         Spiel testspiel = new Spiel(3, 6);
         testspiel.getDeck().spielbareKartenMischen();

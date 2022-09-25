@@ -26,7 +26,7 @@ public class Spiel {
 
     //Get ersten noch mitspielenden Spieler
     public Spieler getErstenMitspieler(){
-        for (Spieler spieler:this.mitSpieler
+        for (Spieler spieler:this.alleSpieler
              ) {
             if (spieler.isSpieltNoch()){
                 return spieler;
@@ -100,10 +100,11 @@ public class Spiel {
     }
 
     //ThePlay
-    public boolean thePlay(boolean standOrHit, Spieler spieler) {
-        if (spieler.isSpieltNoch() && spieler.getHandWert() < 21) {
-            if (standOrHit) {
-                return false;
+    public void thePlay(boolean standOrHit, Spieler spieler) {
+        if (spieler.getHandWert() < 21) {
+            if (standOrHit == true) {
+                spieler.setSpieltNoch(false);
+                return;
             } else {
                 Karte gezogeneKarte = this.deck.kartenGeben(1).get(0);
                 spieler.getHand().add(gezogeneKarte);
@@ -113,15 +114,14 @@ public class Spiel {
                 ) {
                     if (karte.getKartenWert() == 11 && spieler.getHandWert() - 10 < 22) {
                         karte.setWert(ASSKLEIN);
-                        return true;
+                        return;
                     }
                 }
                 spieler.setSpieltNoch(false);
-                return false;
+            } else if (spieler.getHandWert() == 21) {
+                spieler.setSpieltNoch(false);
             }
-            return true;
         }
-        return false;
     }
 
     public void dealersPlay() {
@@ -142,7 +142,7 @@ public class Spiel {
         if (!(dealer.isSpieltNoch())) {
             for (Spieler spieler : this.alleSpieler
             ) {
-                if (spieler.isSpieltNoch()) {
+                if (spieler.getHandWert() < 22) {
                     spieler.setKontostand(spieler.getKontostand() + spieler.getRundenEinsatz() * 2);
                     spieler.setSpieltNoch(false);
                     spieler.setRundenEinsatz(0);
@@ -151,11 +151,11 @@ public class Spiel {
         } else {
             for (Spieler spieler : this.alleSpieler
             ) {
-                if (spieler.getHandWert() > dealer.getHandWert() && spieler.isSpieltNoch()) {
+                if (spieler.getHandWert() > dealer.getHandWert() && spieler.getHandWert() < 22) {
                     spieler.setKontostand(spieler.getKontostand() + spieler.getRundenEinsatz() * 2);
                     spieler.setSpieltNoch(false);
                     spieler.setRundenEinsatz(0);
-                } else if (spieler.getHandWert() == dealer.getHandWert() && spieler.isSpieltNoch()) {
+                } else if (spieler.getHandWert() == dealer.getHandWert() && spieler.getHandWert() < 22) {
                     spieler.setKontostand(spieler.getKontostand() + spieler.getRundenEinsatz());
                     spieler.setSpieltNoch(false);
                     spieler.setRundenEinsatz(0);

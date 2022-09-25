@@ -28,8 +28,6 @@ public class SpielController {
         private ArrayList<Integer> einsaetze = new ArrayList<>();
     }
     Spiel spiel;
-    int thePlaySpieler = 0;
-
     public SpielController() throws Exception {
     }
 
@@ -89,7 +87,13 @@ public class SpielController {
         return "thePLay";
     }
 
-
+    @RequestMapping(value = "/dealersPlay")
+    public String dealersPlay(Model model){
+        spiel.dealersPlay();
+        model.addAttribute("mitspieler",spiel.getMitSpieler());
+        model.addAttribute("dealer",spiel.getAlleSpieler().get(spiel.getAlleSpieler().size()-1));
+        return "dealersPlay";
+    }
 
 
 
