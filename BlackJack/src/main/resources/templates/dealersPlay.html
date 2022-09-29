@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Dealers Play</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3">
 <h1>Dealers Play</h1>
-<div>
+    </div>
+    </div>
+<div class="row justify-content-center">
+    <div class="col-2">
     <h2>Dealer</h2>
-    <table>
+    <table class="table">
         <tr>
             <th>Karte</th>
             <th>Farbe</th>
@@ -20,15 +28,11 @@
             <td th:text="${karte.getWert}"></td>
         </tr>
     </table>
-    <h3 th:text="'Handwert: ' + ${dealer.getHandWert()}"></h3>
-</div>
-
-
-<div th:each="spieler : ${mitspieler}">
+        <p th:text="'Handwert: ' + ${dealer.getHandWert()}"></p>
+    </div>
+<div class="col-2" th:each="spieler : ${mitspieler}">
     <h2 th:text="'Spieler ' + ${spieler.getSpielernummer() +1}"></h2>
-    <h3 th:text="'Kontostand: ' + ${spieler.getKontostand()}"></h3>
-
-    <table>
+    <table class="table">
         <tr>
             <th>Karte</th>
             <th>Farbe</th>
@@ -40,10 +44,17 @@
             <td th:text="${karte.getWert}"></td>
         </tr>
     </table>
-    <h3 th:text="'Handwert: ' + ${spieler.getHandWert()}"></h3>
+    <p th:text="'Handwert: ' + ${spieler.getHandWert()}"></p>
+    <p th:text="'Kontostand: ' + ${spieler.getKontostand()}"></p>
 </div>
-<div>
-    <a href="/betting"><button type="button">Neue Runde</button></a>
+</div>
+<div class="row justify-content-center">
+    <div class="col-2">
+    <a href="/betting">
+        <button type="button" class="btn btn-primary">Neue Runde</button>
+    </a>
+    </div>
+</div>
 </div>
 </body>
 </html>

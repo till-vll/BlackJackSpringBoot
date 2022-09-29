@@ -18,21 +18,21 @@ public class Spiel {
         for (int i = 0; i < anzahlSpieler + 1; i++) {
             this.alleSpieler.add(new Spieler(i));
         }
-        for (int i = 0; i < this.alleSpieler.size() -1; i++) {
+        for (int i = 0; i < this.alleSpieler.size() - 1; i++) {
             this.mitSpieler.add(this.alleSpieler.get(i));
         }
         deck = new Deck(anzahlDecks);
     }
 
     //Get ersten noch mitspielenden Spieler
-    public Spieler getErstenMitspieler(){
-        for (Spieler spieler:this.alleSpieler
-             ) {
-            if (spieler.isSpieltNoch()){
+    public Spieler getErstenMitspieler() {
+        for (Spieler spieler : this.alleSpieler
+        ) {
+            if (spieler.isSpieltNoch()) {
                 return spieler;
             }
         }
-        return this.alleSpieler.get(this.getAlleSpieler().size() -1);
+        return this.alleSpieler.get(this.getAlleSpieler().size() - 1);
     }
 
     //Betting
@@ -96,12 +96,17 @@ public class Spiel {
             spieler.setSpieltNoch(false);
 
         }
+        if (!(naturals.contains((dealer.getSpielernummer())))){
+            dealerNatural = false;
+        }
+
         return dealerNatural;
     }
 
     //ThePlay
     public void thePlay(boolean standOrHit, Spieler spieler) {
         if (spieler.getHandWert() < 21) {
+            System.out.println(standOrHit);
             if (standOrHit == true) {
                 spieler.setSpieltNoch(false);
                 return;
@@ -125,7 +130,7 @@ public class Spiel {
     }
 
     public void dealersPlay() {
-        Spieler dealer = this.getAlleSpieler().get(this.alleSpieler.size() -1);
+        Spieler dealer = this.getAlleSpieler().get(this.alleSpieler.size() - 1);
         while (dealer.getHandWert() < 18) {
             Karte gezogeneKarte = this.deck.kartenGeben(1).get(0);
             dealer.getHand().add(gezogeneKarte);

@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Betting</title>
+    <meta charset="UTF-8">
+    <title>Betting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-<h1>Betting</h1>
-<div>
-  <form th:object="${einsatz}" th:action="@{einsaetze}" >
-      <div th:each="spieler: ${spieler}">
-          <table>
-                <tr><td><label>Spieler: </label></td><td th:text="${spieler.getSpielernummer()}+1"></td></tr>
-              <tr> <td><label>Einsatz: </label></td><td><input type="number" th:field="*{einsaetze}" min="0" th:max="${spieler.getKontostand()}"></td></tr>
-          </table>
-      </div>
-      <button type="submit">Fertig</button>
-  </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <h1>Betting</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form th:object="${einsatz}" th:action="@{einsaetze}">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-2" th:each="spieler: ${spieler}">
+                            <table>
+                                <tr>
+                                    <td><label>Spieler: </label></td>
+                                    <td th:text="${spieler.getSpielernummer()}+1"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Einsatz: </label></td>
+                                    <td><input type="number" th:field="*{einsaetze}" min="0" th:max="${spieler.getKontostand()}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-2">
+                                <button type="submit" class="btn btn-primary">Fertig</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>

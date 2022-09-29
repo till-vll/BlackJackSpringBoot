@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Deal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-<div>
-    <h1>The Deal</h1>
-    <table>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <h1>The Deal</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+    <table class="table">
         <tr>
             <th>Spieler</th>
             <th>Farbe Karte 1</th>
@@ -39,8 +47,18 @@
             <td th:text="${spieler.getHandWert()} == 21 ? 'Ja' : 'Nein'"></td>
         </tr>
     </table>
-    <a href="/betting" th:if="${natural}"><button type="button" >Neue Runde</button></a>
-    <a href="/thePlay" th:unless="${natural}"><button type="button" >Weiter</button></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-2">
+    <a href="/betting" th:if="${natural}">
+        <button type="button" class="btn btn-info">Neue Runde</button>
+    </a>
+    <a href="/thePlay" th:unless="${natural}" >
+        <button type="button" class="btn btn-primary">Weiter</button>
+    </a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

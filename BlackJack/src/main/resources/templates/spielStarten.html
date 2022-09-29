@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Spiel Starten</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-  <h1>Black Jack</h1>
-<div>
+
+<div class="container" >
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <h1>Black Jack</h1>
+        </div>
+    <div class="row justify-content-center">
+    <div class="col-12">
     <form th:object="${angaben}" th:action="@{angaben}">
-        <p>Anzahl Spieler</p>
-        <input type="number" th:field="*{spielerAnzahl}" min="1" value="1">
-        <p>Anzahl Decks</p>
-        <input type="number" th:field="*{decksAnzahl}" min="1" value="1">
-        <br>
-        <button type="submit">Starten</button>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <p>Anzahl Spieler</p>
+                    <input type="number" th:field="*{spielerAnzahl}" min="1" value="1">
+                </div>
+                <div class="col-3">
+                    <p>Anzahl Decks</p>
+                    <input type="number" th:field="*{decksAnzahl}" min="1" value="1">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Starten</button>
+                </div>
+            </div>
+        </div>
     </form>
+    </div>
+    </div>
+    </div>
 </div>
 
 </body>
