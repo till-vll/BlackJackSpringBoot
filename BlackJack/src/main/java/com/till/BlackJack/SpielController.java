@@ -84,8 +84,8 @@ public class SpielController {
         model.addAttribute("spieler", spieler);
         model.addAttribute("spiel", spiel);
 
-        if(!(standOrHit == null)){
-            spiel.thePlay(standOrHit,spieler);
+        if (!(standOrHit == null)) {
+            spiel.thePlay(standOrHit, spieler);
         }
         return "thePlay";
     }

@@ -96,7 +96,7 @@ public class Spiel {
             spieler.setSpieltNoch(false);
 
         }
-        if (!(naturals.contains((dealer.getSpielernummer())))){
+        if (!(naturals.contains((dealer.getSpielernummer())))) {
             dealerNatural = false;
         }
 
